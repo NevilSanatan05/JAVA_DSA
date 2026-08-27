@@ -149,6 +149,21 @@ public class LinkedList {
     return helper(head, key);
   }
 
+
+  public void reverse(){
+    Node prev = null;
+    Node curr = tail = head;
+    Node next;
+
+    while(curr!=null){
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    head = prev;
+
+  }
   public static void main(String args[]) {
     LinkedList ll = new LinkedList();
     ll.addFirst(2);
@@ -156,18 +171,11 @@ public class LinkedList {
     ll.addLast(4);
     ll.addLast(5);
     ll.add(2, 3);
-    ll.print();
-    // System.out.println("Size of linked list: " + size);
-    // ll.removeFirst();
-    // ll.print();
+    ll.print(); //1->2->3->4->5->null
 
-    // ll.removeLast();
-    // ll.print();
-    // System.out.println(ll.size);
+    
+    ll.reverse();
+    ll.print(); //5->4->3->2->1->null
 
-    System.out.println(ll.itrSearch(4));
-    System.out.println(ll.recSearch(4));
-    System.out.println(ll.itrSearch(10));
-    System.out.println(ll.recSearch(10));
   }
 }
