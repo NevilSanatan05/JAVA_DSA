@@ -54,7 +54,7 @@ public class LinkedList {
     System.out.println("null");
   }
 
-  //Searching 
+  // Searching
   public int itrSearch(int key) {
     Node temp = head;
     int i = 0;
@@ -68,14 +68,97 @@ public class LinkedList {
     return -1;
   }
 
+  // Add in Middle
+  public void add(int idx, int data) {
+    if (idx == 0) {
+      addFirst(data);
+      return;
+    }
+    Node newNode = new Node(data);
+    size++;
+    Node temp = head;
+    int i = 0;
+    while (i < idx - 1) {
+      temp = temp.next;
+      i++;
+    }
+    newNode.next = temp.next;
+    temp.next = newNode;
+  }
+
+  // Remove First
+  public int removeFirst() {
+    if (head == null) {
+      System.out.println("LL is empty");
+      return Integer.MIN_VALUE;
+    } else if (size == 1) {
+      int val = head.data;
+      head = tail = null;
+      size = 0;
+      return val;
+
+    }
+    int val = head.data;
+    head = head.next;
+    size--;
+    return val;
+
+  }
+
+  // Remove Last
+  public int removeLast() {
+    if (size == 0) {
+      System.out.println("LL is empty");
+      return Integer.MIN_VALUE;
+    } else if (size == 1) {
+      int val = head.data;
+      head = tail = null;
+      size = 0;
+      return val;
+    }
+    int val = tail.data;
+    Node prev = head;
+    for (int i = 0; i < size - 2; i++) {
+      prev = prev.next;
+    }
+    prev.next = null;
+    tail = prev;
+    size--;
+    return val;
+
+  }
+
+  public int helper(Node head, int key) {
+    if (head == null) {
+      return -1;
+    }
+    if (head.data == key) {
+      return 0;
+    }
+    int idx = helper(head.next, key);
+    if (idx == -1) {
+      return -1;
+    }
+    return idx + 1;
+  }
+
+  public int recSearch(int key) {
+    return helper(head, key);
+  }
+
   public static void main(String args[]) {
     LinkedList ll = new LinkedList();
-    ll.addFirst(3);
+
     ll.addFirst(2);
     ll.addFirst(1);
     ll.addLast(4);
     ll.addLast(5);
+    ll.add(2, 3);
+    ll.removeFirst();
+    ll.removeLast();
     ll.print();
-    System.out.println(ll.itrSearch(4));
+    // System.out.println(ll.itrSearch(4));
+    System.out.println("The size of the Linked List:" + size);
+    System.out.println(ll.recSearch(4));
   }
 }
