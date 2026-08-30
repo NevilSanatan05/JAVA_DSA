@@ -146,19 +146,63 @@ public class LinkedList {
     return helper(head, key);
   }
 
+  public Node findMid(Node head) {
+    Node slow = head;
+    Node fast = head;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return slow;
+  }
+
+  public boolean checkPalindrome() {
+    if (head == null || head.next == null) {
+      return true;
+    }
+
+    // step1 - find midNode
+    Node midNode = findMid(head);
+
+    // step2 - reverse 2nd half
+    Node prev = null;
+    Node curr = midNode;
+    Node next;
+    while (curr != null) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    Node right = prev;
+    Node left = head;
+
+    // step3 - check 1st half anf 2nd half are equal
+
+    while (right != null) {
+      if (left.data != right.data) {
+        return false;
+      }
+      left = left.next;
+      right = right.next;
+    }
+    return true;
+  }
+
   public static void main(String args[]) {
     LinkedList ll = new LinkedList();
 
     ll.addFirst(2);
     ll.addFirst(1);
-    ll.addLast(4);
-    ll.addLast(5);
-    ll.add(2, 3);
-    ll.removeFirst();
-    ll.removeLast();
+    ll.addLast(2);
+    ll.addLast(1);
+    // ll.add(2, 3);
+    // ll.removeFirst();
+    // ll.removeLast();
     ll.print();
     // System.out.println(ll.itrSearch(4));
     System.out.println("The size of the Linked List:" + size);
-    System.out.println(ll.recSearch(4));
+    // System.out.println(ll.recSearch(4));
+    System.out.println(ll.checkPalindrome());
   }
 }
