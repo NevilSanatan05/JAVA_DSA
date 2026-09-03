@@ -1,254 +1,291 @@
 public class LinkedList_2 {
 
-    static class Node {
+  static class Node {
 
-        int data;
-        Node next;
+    int data;
+    Node next;
 
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
+    Node(int data) {
+      this.data = data;
+      this.next = null;
+    }
+  }
+
+  static Node head;
+  static Node tail;
+  static int size;
+
+  // ================= ADD FIRST =================
+
+  public void addFirst(int data) {
+
+    // Step 1: Create new node
+    Node newNode = new Node(data);
+    size++;
+
+    // If Linked List is empty
+    if (head == null) {
+      head = tail = newNode;
+      return;
     }
 
-    static Node head;
-    static Node tail;
-    static int size;
+    // Step 2: New node points to current head
+    newNode.next = head;
 
-    // ================= ADD FIRST =================
+    // Step 3: Make new node the head
+    head = newNode;
+  }
 
-    public void addFirst(int data) {
+  // ================= ADD LAST =================
 
-        // Step 1: Create new node
-        Node newNode = new Node(data);
-        size++;
+  public void addLast(int data) {
 
-        // If Linked List is empty
-        if (head == null) {
-            head = tail = newNode;
-            return;
-        }
+    // Step 1: Create new node
+    Node newNode = new Node(data);
+    size++;
 
-        // Step 2: New node points to current head
-        newNode.next = head;
-
-        // Step 3: Make new node the head
-        head = newNode;
+    // If Linked List is empty
+    if (head == null) {
+      head = tail = newNode;
+      return;
     }
 
-    // ================= ADD LAST =================
+    // Step 2: Current tail points to new node
+    tail.next = newNode;
 
-    public void addLast(int data) {
+    // Step 3: Make new node the tail
+    tail = newNode;
+  }
 
-        // Step 1: Create new node
-        Node newNode = new Node(data);
-        size++;
+  // ================= PRINT =================
 
-        // If Linked List is empty
-        if (head == null) {
-            head = tail = newNode;
-            return;
-        }
+  public void print() {
 
-        // Step 2: Current tail points to new node
-        tail.next = newNode;
-
-        // Step 3: Make new node the tail
-        tail = newNode;
+    if (head == null) {
+      System.out.println("LL is empty");
+      return;
     }
 
-    // ================= PRINT =================
+    Node temp = head;
 
-    public void print() {
-
-        if (head == null) {
-            System.out.println("LL is empty");
-            return;
-        }
-
-        Node temp = head;
-
-        while (temp != null) {
-            System.out.print(temp.data + "->");
-            temp = temp.next;
-        }
-
-        System.out.println("null");
+    while (temp != null) {
+      System.out.print(temp.data + "->");
+      temp = temp.next;
     }
 
-    // ================= CYCLE DETECTION =================
+    System.out.println("null");
+  }
 
-    public static boolean isCycle() {
+  // ================= CYCLE DETECTION =================
 
-        // Floyd's Cycle Detection Algorithm
+  public static boolean isCycle() {
 
-        Node slow = head;
-        Node fast = head;
+    // Floyd's Cycle Detection Algorithm
 
-        while (fast != null && fast.next != null) {
+    Node slow = head;
+    Node fast = head;
 
-            slow = slow.next;
-            fast = fast.next.next;
+    while (fast != null && fast.next != null) {
 
-            if (slow == fast) {
-                return true;
-            }
-        }
+      slow = slow.next;
+      fast = fast.next.next;
 
-        return false;
+      if (slow == fast) {
+        return true;
+      }
     }
 
-    // ================= REMOVE CYCLE =================
+    return false;
+  }
 
-    public static void removeCycle() {
+  // ================= REMOVE CYCLE =================
 
-        // Step 1: Detect cycle
+  public static void removeCycle() {
 
-        Node slow = head;
-        Node fast = head;
+    // Step 1: Detect cycle
 
-        boolean cycle = false;
+    Node slow = head;
+    Node fast = head;
 
-        while (fast != null && fast.next != null) {
+    boolean cycle = false;
 
-            slow = slow.next;
-            fast = fast.next.next;
+    while (fast != null && fast.next != null) {
 
-            if (slow == fast) {
-                cycle = true;
-                break;
-            }
-        }
+      slow = slow.next;
+      fast = fast.next.next;
 
-        // No cycle
-        if (!cycle) {
-            return;
-        }
-
-        // Step 2: Find starting point of cycle
-
-        slow = head;
-        Node prev = null;
-
-        while (slow != fast) {
-
-            prev = fast;
-
-            slow = slow.next;
-            fast = fast.next;
-        }
-
-        // Step 3: Remove cycle
-
-        prev.next = null;
+      if (slow == fast) {
+        cycle = true;
+        break;
+      }
     }
 
-    // ================= GET MID =================
-
-    private Node getMid(Node head) {
-
-        Node slow = head;
-        Node fast = head.next;
-
-        while (fast != null && fast.next != null) {
-
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        return slow;
+    // No cycle
+    if (!cycle) {
+      return;
     }
 
-    // ================= MERGE =================
+    // Step 2: Find starting point of cycle
 
-    private Node merge(Node head1, Node head2) {
+    slow = head;
+    Node prev = null;
 
-        // Dummy node
-        Node mergedLL = new Node(-1);
+    while (slow != fast) {
 
-        Node temp = mergedLL;
+      prev = fast;
 
-        // Compare both lists
-        while (head1 != null && head2 != null) {
-
-            if (head1.data <= head2.data) {
-
-                temp.next = head1;
-                head1 = head1.next;
-                temp = temp.next;
-
-            } else {
-
-                temp.next = head2;
-                head2 = head2.next;
-                temp = temp.next;
-            }
-        }
-
-        // If elements are remaining in head1
-        while (head1 != null) {
-
-            temp.next = head1;
-            head1 = head1.next;
-            temp = temp.next;
-        }
-
-        // If elements are remaining in head2
-        while (head2 != null) {
-
-            temp.next = head2;
-            head2 = head2.next;
-            temp = temp.next;
-        }
-
-        return mergedLL.next;
+      slow = slow.next;
+      fast = fast.next;
     }
 
-    // ================= MERGE SORT =================
+    // Step 3: Remove cycle
 
-    public Node mergeSort(Node head) {
+    prev.next = null;
+  }
 
-        // Base case
-        if (head == null || head.next == null) {
-            return head;
-        }
+  // ================= GET MID =================
 
-        // Step 1: Find middle
-        Node mid = getMid(head);
+  private Node getMid(Node head) {
 
-        // Step 2: Divide into two lists
-        Node rightHead = mid.next;
+    Node slow = head;
+    Node fast = head.next;
 
-        mid.next = null;
+    while (fast != null && fast.next != null) {
 
-        // Step 3: Sort left half
-        Node newLeft = mergeSort(head);
-
-        // Step 4: Sort right half
-        Node newRight = mergeSort(rightHead);
-
-        // Step 5: Merge both sorted halves
-        return merge(newLeft, newRight);
+      slow = slow.next;
+      fast = fast.next.next;
     }
 
-    // ================= MAIN =================
+    return slow;
+  }
 
-    public static void main(String[] args) {
+  // ================= MERGE =================
 
-        LinkedList_2 ll = new LinkedList_2();
+  private Node merge(Node head1, Node head2) {
 
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addFirst(5);
+    // Dummy node
+    Node mergedLL = new Node(-1);
 
-        System.out.println("Before Merge Sort:");
-        ll.print();
+    Node temp = mergedLL;
 
-        ll.head = ll.mergeSort(ll.head);
+    // Compare both lists
+    while (head1 != null && head2 != null) {
 
-        System.out.println("After Merge Sort:");
-        ll.print();
+      if (head1.data <= head2.data) {
+
+        temp.next = head1;
+        head1 = head1.next;
+        temp = temp.next;
+
+      } else {
+
+        temp.next = head2;
+        head2 = head2.next;
+        temp = temp.next;
+      }
     }
+
+    // If elements are remaining in head1
+    while (head1 != null) {
+
+      temp.next = head1;
+      head1 = head1.next;
+      temp = temp.next;
+    }
+
+    // If elements are remaining in head2
+    while (head2 != null) {
+
+      temp.next = head2;
+      head2 = head2.next;
+      temp = temp.next;
+    }
+
+    return mergedLL.next;
+  }
+
+  // ================= MERGE SORT =================
+
+  public Node mergeSort(Node head) {
+
+    // Base case
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    // Step 1: Find middle
+    Node mid = getMid(head);
+
+    // Step 2: Divide into two lists
+    Node rightHead = mid.next;
+
+    mid.next = null;
+
+    // Step 3: Sort left half
+    Node newLeft = mergeSort(head);
+
+    // Step 4: Sort right half
+    Node newRight = mergeSort(rightHead);
+
+    // Step 5: Merge both sorted halves
+    return merge(newLeft, newRight);
+  }
+
+  public void zigZag() {
+    // find mid
+    Node slow = head;
+    Node fast = head.next;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    Node mid = slow;
+
+    // reverse 2nd half
+    Node curr = mid.next;
+    mid.next = null;
+    Node prev = null;
+    Node next;
+    while (curr != null) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+
+    Node left = head;
+    Node right = prev;
+    Node nextL, nextR;
+    // alt merge - zig-zag merge
+    while (left != null && right != null) {
+      nextL = left.next;
+      left.next = right;
+      nextR = right.next;
+      right.next = nextL;
+
+      left = nextL;
+      right = nextR;
+    }
+
+  }
+  // ================= MAIN =================
+
+  public static void main(String[] args) {
+
+    LinkedList_2 ll = new LinkedList_2();
+
+    ll.addLast(1);
+    ll.addLast(2);
+    ll.addLast(3);
+    ll.addLast(4);
+    ll.addLast(5);
+
+    // System.out.println("Before Merge Sort:");
+    ll.print();
+    ll.zigZag();
+    // ll.head = ll.mergeSort(ll.head);
+
+    // System.out.println("After Merge Sort:");
+    ll.print();
+  }
 }
