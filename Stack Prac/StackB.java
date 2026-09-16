@@ -148,20 +148,20 @@
 // }
 
 
-import java.util.Stack;
-public class StackB{
-  public static void main(String[] args) {
+// import java.util.Stack;
+// public class StackB{
+//   public static void main(String[] args) {
    
-    //Step 1: Create Stack
-    Stack<Integer> s = new Stack<>();
+//     //Step 1: Create Stack
+//     Stack<Integer> s = new Stack<>();
 
-    //Step 2 : Push
-    s.push (10);
-    s.push (20);
-    s.push (30);
-    System.out.println(s.peek());
-System.out.println(s.pop());
-System.out.println(s);
-System.out.println(s.search(10));
-  }
-}
+//     //Step 2 : Push
+//     s.push (10);
+//     s.push (20);
+//     s.push (30);
+//     System.out.println(s.peek());
+// System.out.println(s.pop());
+// System.out.println(s);
+// System.out.println(s.search(10));
+//   }
+// }
