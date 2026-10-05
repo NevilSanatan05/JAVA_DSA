@@ -7,14 +7,19 @@ public class Basic3 {
       sumWin = sumWin + arr[i];
     }
     int maxSum = sumWin;
-    
+    int minSum = sumWin;
+
     for (int i = k; i < arr.length; i++) {
       sumWin = sumWin + arr[i] - arr[i - k];
       if (sumWin > maxSum) {
         maxSum = sumWin;
       }
+      if (sumWin < minSum) {
+        minSum = sumWin;
+      }
     }
-      System.out.println("Max sum is: " + maxSum);
+      // System.out.println("Max sum is: " + maxSum);
+      System.out.println("Min sum is: " + minSum);
 
     }
   }
