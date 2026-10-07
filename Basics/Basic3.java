@@ -1,22 +1,17 @@
-public class Basic3 {
-    public static void main(String[] args) {
-
-       int arr[] = {1, 2, 3, 2, 1};
-       int left = 0;
-       int right = arr.length - 1;
-       boolean palindrome = true;
-       while(left<right){
-        if(arr[left]!=arr[right]){
-         palindrome = false;
-         break;
+public class Basic3{
+  public static void main(String[] args){
+    int arr[] = {5,3,8,1};
+    for(int i=0;i<arr.length;i++){
+      for(int j=0;j<arr.length-1-i;j++){
+        if(arr[j]>arr[j+1]){
+int temp = arr[j];
+arr[j]=arr[j+1];
+arr[j+1]=temp;
         }
-        left++;
-        right--;
-       }
-       if(palindrome){
-        System.out.println("The array is a palindrome");
-        }else{
-        System.out.println("The array is not a palindrome");
+      }
+      }
+      for(int i=0; i<arr.length; i++){
+            System.out.print(arr[i] + " ");
         }
     }
-}
+  }
