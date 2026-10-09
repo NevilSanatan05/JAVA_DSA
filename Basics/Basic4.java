@@ -1,33 +1,19 @@
 
 public class Basic4 {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+ int arr[] = {0, 5, 0, 3, 8, 0, 2};
+ int position = 0;
+ for(int i=0;i<arr.length;i++){
+  if(arr[i]!=0){
+    arr[position]=arr[i];
+   position++;
+  }
 
-       int arr[] = {1, 2, 3, 2, 1};
-int target = 6;
-
-        int left = 0;
-        int sum = 0;
-        int minLength = Integer.MAX_VALUE;
-
-        for (int right = 0; right < arr.length; right++) {
-
-            // Expand the window
-            sum = sum + arr[right];
-
-            // Shrink the window while sum >= target
-            while (sum >= target) {
-
-                int length = right - left + 1;
-
-                if (length < minLength) {
-                    minLength = length;
-                }
-
-                sum = sum - arr[left];
-                left++;
-            }
-        }
-
-        System.out.println("Minimum length: " + minLength);
-    }
+ }
+ while(position<arr.length){
+  arr[position]=0;
+  position++;
+ }  
+System.out.println(java.util.Arrays.toString(arr));
+}
 }
