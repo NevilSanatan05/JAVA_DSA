@@ -1,14 +1,13 @@
-public class Strings {
+public class Strings{
   public static void main(String[] args) {
-    String word = "Education";
+    String word = "Java123@DSA";
     int count = 0;
-    for (int i = 0; i < word.length(); i++) {
-      char ch = Character.toLowerCase(word.charAt(i));
-      if (ch != 'a' && ch != 'e' && ch != 'i' && ch != 'o' && ch != 'u') {
+    for(int i=0;i<word.length();i++){
+
+      if(Character.isLetter(word.charAt(i))){
         count++;
       }
     }
-    System.out.println("Consonants: " + count);
-
+    System.out.println("Letters: "+count);
   }
 }
