@@ -1,13 +1,18 @@
+import java.util.*;
 public class Strings{
   public static void main(String[] args) {
-   String word = "Programming";
-   int count =0;
-   for(int i=0;i<word.length()-1;i++){
-    if(word.charAt(i)=='a'||word.charAt(i)=='e'||word.charAt(i)=='i'||word.charAt(i)=='o'||word.charAt(i)=='u'){
-      count++;
-    }
-   }
-   System.out.println("Vowels: "+count);
-
+  String word1 = "listen";
+  String word2 = "silent";
+  
+  char[] arr1=word1.toCharArray();
+  char[] arr2=word2.toCharArray();
+  Arrays.sort(arr1); 
+  Arrays.sort(arr2);
+  if(Arrays.equals(arr1, arr2)){
+    System.out.println("They are anagrams");
+  } else{
+    System.out.println("They are not anagrams");
+  }
+   
   }
 }
