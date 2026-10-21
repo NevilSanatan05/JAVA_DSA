@@ -240,15 +240,36 @@
 
 //Problem 14 - Character Frequence (Hashing)
 
-import java.util.*;
-public class Revision {
-  public static void main(String[] args) {
-    HashMap<Character, Integer> map = new HashMap<>();
-    String word = "banana";
-    for (int i = 0; i < word.length(); i++) {
-      char ch = word.charAt(i);
-      map.put(ch, map.getOrDefault(ch, 0) + 1);
-    }
-    System.out.println(map);
-  }
-}
+// import java.util.*;
+// public class Revision {
+//   public static void main(String[] args) {
+//     HashMap<Character, Integer> map = new HashMap<>();
+//     String word = "banana";
+//     for (int i = 0; i < word.length(); i++) {
+//       char ch = word.charAt(i);
+//       map.put(ch, map.getOrDefault(ch, 0) + 1);
+//     }
+//     System.out.println(map);
+//   }
+// }
+
+//Problem 15 - First non-repeating character using a HashMap. 
+
+// import java.util.*;
+// public class Revision {
+//   public static void main(String[] args) {
+//     HashMap<Character, Integer> map = new HashMap<>();
+//     String word = "swiss";
+//     for (int i = 0; i < word.length(); i++) {
+//       char ch = word.charAt(i);
+//       map.put(ch, map.getOrDefault(ch, 0) + 1);
+//     }
+//     for (int i = 0; i < word.length(); i++) {
+//       char ch = word.charAt(i);
+//       if (map.get(ch) == 1) {
+//         System.out.println(ch);
+//         break;
+//       }
+//     }
+//   }
+// }
