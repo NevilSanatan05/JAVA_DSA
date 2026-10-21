@@ -180,9 +180,75 @@
 //     else if(largest>arr[i] && arr[i]>secondLargest){
 //       secondLargest=arr[i];
 //     }
-    
+
 //    }
 //    System.out.println("Largest: "+largest);
 //    System.out.println("secondLargest: "+secondLargest);
 //   }
 // }
+
+//Problem 11 - Palindrome 
+
+// public class Revision{
+//   public static void main(String[] args) {
+//     String word = "madam";
+//     int left =0;
+//     int right = word.length()-1;
+//     boolean isPalindrome = true;
+//     while(left<right){
+//       if(word.charAt(left)!=word.charAt(right)){
+//         isPalindrome=false;
+//         break;
+//       }
+//       left++;
+//       right--;
+//     }
+//     if(isPalindrome){
+//       System.out.println("Is a Palindrome");
+//     }
+//     else{
+//       System.out.println("Is not a Palindrome");
+//     }
+//   }
+// }
+
+//Problem 12 - Counting Vowels
+
+// public class Revision{
+//   public static void main(String[] args) {
+//    String word = "education";
+//    int count = 0;
+//    for(int i=0;i<word.length();i++){
+//     if(word.charAt(i)=='a'||word.charAt(i)=='e'||word.charAt(i)=='i'||word.charAt(i)=='o'||word.charAt(i)=='u'){
+//       count++;
+//     }
+//    }
+//    System.out.println("Vowels = "+count);
+//   }
+// }
+
+//Problem 13 - Reverse a String
+
+// public class Revision {
+//   public static void main(String[] args) {
+//     String word = "hello";
+//     for (int i = word.length() - 1; i >= 0; i--) {
+//       System.out.print(word.charAt(i) + " ");
+//     }
+//   }
+// }
+
+//Problem 14 - Character Frequence (Hashing)
+import java.util.*;
+
+public class Revision {
+  public static void main(String[] args) {
+    HashMap<Character, Integer> map = new HashMap<>();
+    String word = "banana";
+    for (int i = 0; i < word.length(); i++) {
+      char ch = word.charAt(i);
+      map.put(ch, map.getOrDefault(ch, 0) + 1);
+    }
+    System.out.println(map);
+  }
+}
