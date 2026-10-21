@@ -239,8 +239,8 @@
 // }
 
 //Problem 14 - Character Frequence (Hashing)
-import java.util.*;
 
+import java.util.*;
 public class Revision {
   public static void main(String[] args) {
     HashMap<Character, Integer> map = new HashMap<>();
