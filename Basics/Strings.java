@@ -1,10 +1,21 @@
 import java.util.*;
-public class Strings{
+
+public class Strings {
   public static void main(String[] args) {
-   HashMap<Character,Integer>map=new HashMap<>();
-   map.put('x', 1);
-   map.put('x', map.get('x')+1);
-   map.put('x', map.get('x')+1);
-   System.out.println(map.get('x'));
+    HashMap<Character, Integer> map = new HashMap<>();
+    HashSet<Character> printed = new HashSet<>();
+    String word = "programming";
+    int count = 0;
+    for (int i = 0; i < word.length(); i++) {
+      char ch = word.charAt(i);
+      map.put(ch, map.getOrDefault(ch, 0) + 1);
+    }
+
+    for (int i = 0; i < word.length(); i++) {
+      char ch = word.charAt(i);
+      if (map.get(ch) > 1 && !printed.contains(ch)) {
+        System.out.println(ch + " appears " + map.get(ch) + " times");
+      }
+    }
   }
 }
