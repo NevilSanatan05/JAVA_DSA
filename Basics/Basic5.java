@@ -2,17 +2,15 @@ import java.util.HashMap;
 
 public class Basic5 {
   public static void main(String[] args) {
-    int arr[] = { 2, 7, 11, 15 };
-    int target = 9;
-    HashMap<Integer,Integer>map = new HashMap<>();
-    for(int i=0;i<arr.length;i++){
-     int needed = target - arr[i];
-     if(map.containsKey(needed)){
-      System.out.println("Indices: "+map.get(needed)+", "+i);
-      return;
-     }
-     map.put(arr[i],i);
+    int arr1[] = { 1, 2, 3, 4, 5 };
+    int arr2[] = { 6, 7, 3, 8, 9 };
+    for (int i = 0; i < arr1.length; i++) {
+for(int j=0;j<arr2.length;j++){
+  if(arr1[i]==arr2[j]){
+    System.out.println("Common Element: "+arr1[i]);
+    break;
+  }
+}
     }
-
   }
 }
